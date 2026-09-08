@@ -1,19 +1,25 @@
 import React from 'react';
-import { Plus } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function ProductCard(props: any) {
     const name = props.name;
     const imgurl = props.imgurl
     const color = props.color;
     const storage = props.storage;
-    const  price=props.price;
+    const price = props.price;
+    const setCurrentpage = props.setCurrentpage;
+
 
     return (
-        <div className="flex flex-col p-3 rounded-[20px] bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 hover:border-[#b096f9] hover:shadow-[0_8px_20px_rgba(113,44,220,0.08)] hover:-translate-y-1 cursor-pointer group relative">
+        <div onClick={() => {
+            setCurrentpage("SingleProduct");
+            
+        }}
+            className="flex flex-col p-3 rounded-[20px] bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 hover:border-[#b096f9] hover:shadow-[0_8px_20px_rgba(113,44,220,0.08)] hover:-translate-y-1 cursor-pointer group relative">
 
             {/* Discount Badge (Top Left) */}
             <div className="absolute top-4 left-4 z-10 bg-[#f4f0ff] text-[#712CDC] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
-                {Math.floor(Math.random() * 11)+10}% Off
+                {Math.floor(Math.random() * 11) + 10}% Off
             </div>
 
             {/* Image Container */}
@@ -45,17 +51,16 @@ export default function ProductCard(props: any) {
                     <div className="flex flex-col">
                         {/* Actual Price */}
                         <span className="text-sm font-bold text-gray-900 leading-tight">
-                           {price}
+                            {price}
                         </span>
                         {/* EMI Starting Price */}
                         <span className="text-[10px] font-semibold text-[#712CDC] mt-0.5">
-                            EMI from ₹{Math.floor(price/24)}/mo
+                            EMI from ₹{Math.floor(price / 24)}/mo
                         </span>
                     </div>
 
-                    {/* Quick Add Button */}
-                    <button className="h-7 w-7 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 transition-colors duration-300 group-hover:bg-[#712CDC] group-hover:text-white hover:!bg-[#5b22b3] flex-shrink-0">
-                        <Plus className="h-4 w-4" strokeWidth={2.5} />
+                    <button className="h-8 w-8 rounded-full bg-[#712CDC] flex items-center justify-center text-white transition-all duration-300 hover:bg-[#5b22b3] hover:scale-105 flex-shrink-0 shadow-sm">
+                        <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
                     </button>
 
                 </div>

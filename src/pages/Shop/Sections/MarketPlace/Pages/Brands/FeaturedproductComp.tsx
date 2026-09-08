@@ -2,7 +2,8 @@ import React from 'react';
 import ProductCard from '../Products/productcard';
 import useFeaturedProducts from "@/hooks/usefeaturedproducts";
 import TransparentProductcard from '../Products/TransparentProducts';
-export default function FeaturedProductsComp() {
+export default function FeaturedProductsComp(props:any) {
+     const setCurrentpage=props.setCurrentpage;
     const{data,isLoading,isError,error}=useFeaturedProducts();
     return (
         <div className="w-full max-w-md mx-auto px-4 mb-6">
@@ -12,9 +13,9 @@ export default function FeaturedProductsComp() {
                 <h2 className="text-lg font-bold text-gray-900 tracking-tight">
                     Featured Products
                 </h2>
-                <button className="text-[13px] font-semibold text-[#712CDC] hover:text-[#5b22b3] transition-colors">
+                {/* <button className="text-[13px] font-semibold text-[#712CDC] hover:text-[#5b22b3] transition-colors">
                     See All
-                </button>
+                </button> */}
             </div>
 
             {/* Empty Container for Phone Listing (2 Columns) */}
@@ -26,7 +27,9 @@ export default function FeaturedProductsComp() {
                        imgurl={product.ImageUrl}
                        color={product.variants[0].attributes.color}
                        storage={product.variants[0].attributes.storage}
-                       price={product.variants[0].price}/>);
+                       price={product.variants[0].price}
+                       setCurrentpage={setCurrentpage}
+                       />);
                 })
 
                 }

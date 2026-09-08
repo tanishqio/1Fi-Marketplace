@@ -3,6 +3,9 @@ import TransparentSkeletonGrid from "./TransparentgridforTopBrands";
 import TopBrandsCard from "./TopBrandsCard";
 export function TopBrandsComp(props: any) {
     const category = props.category;
+    const setbrand = props.setbrand;
+    const setCurrentpage = props.setCurrentpage;
+
     console.log("category name is" + category + "and type is" + category.type);
     const { data, isLoading, isError, error } = useBrands(category);
     // console.log("data is "+topbrands.topbrands)
@@ -20,7 +23,7 @@ export function TopBrandsComp(props: any) {
                     (<TransparentSkeletonGrid />)
                     :
                     (data.topbrands.map((brand: any) => {
-                        return (<TopBrandsCard brandname={brand.Name} logo={brand.logoUrl} isLoading={isLoading} />)
+                        return (<TopBrandsCard brandname={brand.Name} logo={brand.logoUrl} isLoading={isLoading} setbrand={setbrand} setCurrentpage={setCurrentpage}/>)
                     }))
                 }
             </div>
