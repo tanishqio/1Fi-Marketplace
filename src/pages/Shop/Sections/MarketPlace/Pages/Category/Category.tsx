@@ -8,7 +8,7 @@ import {
     ShoppingBag,
     Sparkles
 } from "lucide-react";
-import Card from '../Card';
+import Card from './Card';
 
 export default function CategoryPage(props: any) {
     //   hard coding the categories 
@@ -56,20 +56,4 @@ export default function CategoryPage(props: any) {
 
         </div>
     );
-    //  return <div className="flex flex-col gap-5 border-5">
-    //     <div className="items-center justify-between ">
-    //       <p className="text-[20px] font-semibold leading-[1.2] tracking-[-0.018em] text-gray-900 text-center">
-    //         Shop By Category
-    //       </p>
-    //     </div>
-    //     <div className="flex flex-wrap gap-4">
-    //       <Card CategoryName="Mobiles" Icon={Smartphone} />
-    //       <Card CategoryName="Mobiles" Icon={Smartphone} />
-    //       <Card CategoryName="Mobiles" Icon={Smartphone} />
-
-
-
-
-    //     </div>
-    //   </div>
 }
