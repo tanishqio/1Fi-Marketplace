@@ -4,6 +4,7 @@ import TransparentProductcard from "./TransparentProducts";
 function ProductsPage(props: any) {
     const brandname=props.brand;
     const setCurrentpage=props.setCurrentpage;
+    // this hook is giviing all the products name
     const {data,isLoading,isError,error}=useProduct(brandname);
     return <div className="w-full max-w-md mx-auto px-4 mb-6">
 
@@ -19,6 +20,7 @@ function ProductsPage(props: any) {
             {isLoading ? <TransparentProductcard /> :
                 data.allproducts.map((product: any) => {
                     return (<ProductCard
+                    id={product.id}
                         name={product.Name}
                         imgurl={product.ImageUrl}
                         color={product.variants[0].attributes.color}

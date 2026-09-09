@@ -60,8 +60,8 @@ The navigation architecture uses a **state-machine pattern** (`Currentpage` enum
 | Product listing with images | `ProductCard` renders `ImageUrl` from API in a `4/5` aspect-ratio container | `productcard.tsx` |
 | Product name and pricing | Name, price, and "EMI from ₹X/mo" shown on every card | `productcard.tsx` |
 | Product variants (color, storage) | Color swatches + storage pill selectors, price updates reactively | `SingleProductPage.tsx` |
-| EMI plan display | "No Cost EMI starts at ₹X/mo" block with a drill-down chevron | `SingleProductPage.tsx` |
-| EMI plan selection CTA | "Buy with 1Fi EMI →" primary action button | `SingleProductPage.tsx` |
+| EMI plan display | 4-plan accordion (3/6/12/24 months); EMI label updates dynamically — "No Cost", "Low Cost", "Standard" per selected plan | `SingleProductPage.tsx` |
+| EMI plan selection CTA | Sticky "Buy with 1Fi EMI →" bar fixed above the bottom nav — always reachable regardless of scroll position | `SingleProductPage.tsx` |
 | Dynamic data fetch (no hardcoding) | All products/brands fetched via REST API through custom React Query hooks | `useProducts.ts`, `useBrand.ts`, `usefeaturedproducts.ts` |
 | Category-based browsing | 6-category grid → brand list → product list drill-down | `Category.tsx` → `Brands.tsx` → `Products.tsx` |
 | Featured products surface | Cross-category featured products shown alongside top brands | `FeaturedproductComp.tsx` |
@@ -395,8 +395,9 @@ Specific matched elements (verifiable in code):
 
 ### 4. Functionality
 - Complete 4-step drill-down: Category → Brand → Product List → Product Detail.
-- Variant selection (color + storage) with reactive price computation: `currentPrice = basePrice + storageOptions[selectedStorage].priceAdd`.
-- Image gallery with thumbnail navigation and `group-hover:scale-105` zoom.
+- Single combined variant dropdown (Color · Storage); price, gallery, and EMI all update reactively on selection.
+- Image gallery: thumbnails conditionally shown only when a variant has `>1` image; 140 ms opacity fade on image switch; "N / Total" counter overlaid on main image.
+- EMI accordion with 4 selectable plans; sticky CTA bar (`position: fixed`, above BottomNav) keeps the primary action always reachable.
 - Wishlist toggle with persistent local UI state.
 
 ### 5. Data / API Implementation
@@ -412,6 +413,9 @@ Specific matched elements (verifiable in code):
 - `animate-pulse` on brand/product skeletons provides visual feedback during Render cold-start delays.
 - `aria-selected` and `role="tab"` on `NavBarItem` for basic accessibility compliance.
 - "More categories coming soon" state with `animate-pulse` Sparkles icon — communicates roadmap without broken UI.
+- Sticky CTA bar uses `bottom: calc(5rem + env(safe-area-inset-bottom))` to sit precisely above the BottomNav on all devices including iPhone notch/home indicator.
+- `variant.images` sorted by `Position` field before rendering — respects backend ordering intent.
+- Image counter ("2 / 4") only rendered when `images.length > 1`; thumbnail strip also conditionally hidden for single-image variants to avoid a lone orphan thumbnail.
 
 ---
 
@@ -421,7 +425,7 @@ Specific matched elements (verifiable in code):
 |---|---|---|
 | No formal error UI | `isError` from hooks is available but not rendered | Add an error boundary + retry button component |
 | `any` props typing | Props are typed as `any` throughout | Define TypeScript interfaces for `Product`, `Brand`, `Variant`, and use them end-to-end |
-| `SingleProductPage` product data is mocked | The product detail page uses a static `productData` object inside the component rather than receiving the clicked product from the API | Pass the selected product object from `ProductCard` through `MarketPlace.tsx` state, and render it in `SingleProductPage` dynamically |
+| ~~`SingleProductPage` used static data~~ | ✅ **Resolved** — product ID stored in `ProductContext`, fetched live via `useGetSingleProduct(productid)` | — |
 | No unit or integration tests | Time constraint | Add Vitest + React Testing Library: unit tests for hooks (mock Axios), integration tests for the Category→Brands→Products navigation flow |
 | No "Add to Cart" state | CTA is present but has no side-effect | Implement cart state (Zustand or Context) with a cart icon badge in the nav |
 | `console.log` debug statements | Left in during development | Remove before a production merge |

@@ -1,19 +1,21 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-
+import { ProductContext } from '@/context/ProductContext';
+import { useContext } from 'react';
 export default function ProductCard(props: any) {
+    const id=props.id;
     const name = props.name;
     const imgurl = props.imgurl
     const color = props.color;
     const storage = props.storage;
     const price = props.price;
     const setCurrentpage = props.setCurrentpage;
-
+const {productid,setproductid}=useContext(ProductContext);
 
     return (
         <div onClick={() => {
             setCurrentpage("SingleProduct");
-            
+            setproductid(id);
         }}
             className="flex flex-col p-3 rounded-[20px] bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 hover:border-[#b096f9] hover:shadow-[0_8px_20px_rgba(113,44,220,0.08)] hover:-translate-y-1 cursor-pointer group relative">
 

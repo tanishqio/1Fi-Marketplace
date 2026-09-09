@@ -23,6 +23,7 @@ export default function FeaturedProductsComp(props:any) {
                 { isLoading? <TransparentProductcard/>:
                 data.featuredproducts.map((product:any)=>{
                     return (<ProductCard
+                    id={product.id}
                          name={product.Name}
                        imgurl={product.ImageUrl}
                        color={product.variants[0].attributes.color}
