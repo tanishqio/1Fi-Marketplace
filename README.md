@@ -369,9 +369,7 @@ No automated test suite is included in this submission. See [Known Limitations](
 
 ---
 
-## 🔍 Evaluation Criteria — Explicit Mapping
-
-> Structured for direct scoring against the 1Fi assignment rubric.
+## 🎯 How Key Requirements Were Addressed
 
 ### 1. Product Understanding
 - Marketplace is positioned as a buy-now-pay-later storefront: EMI pricing is surfaced at **every level** (product card → "EMI from ₹X/mo", product detail → "No Cost EMI starts at ₹X/mo" block with drill-down).
