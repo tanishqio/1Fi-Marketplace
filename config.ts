@@ -1,1 +1,1 @@
-export const BACKEND_URL="https://1-fi-market-place-backend.vercel.app/api"
+export const BACKEND_URL=" https://onefi-marketplace-backend-wm5w.onrender.com/api"
