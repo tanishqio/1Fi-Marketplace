@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductCard from '../Products/productcard';
-import useFeaturedProducts from "@/hooks/useFeaturedProducts";
+import useFeaturedProducts from "@/hooks/usefeaturedproducts";
 import TransparentProductcard from '../Products/TransparentProducts';
 export default function FeaturedProductsComp(props:any) {
      const setCurrentpage=props.setCurrentpage;
