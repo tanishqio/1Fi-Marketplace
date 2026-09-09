@@ -14,7 +14,7 @@ function MarketPlace() {
   return (<div>
     {Currentpage === "Category" && <CategoryPage setCategory={setCategory} setCurrentpage={setCurrentpage}/>}
     {Currentpage === "Brands" && <BrandsPage category ={Category} setbrand={setbrand} setCurrentpage={setCurrentpage}/>}
-    {Currentpage === "Products" && <ProductsPage brand={brand}/>}
+    {Currentpage === "Products" && <ProductsPage brand={brand} setCurrentpage={setCurrentpage} />}
     {Currentpage === "SingleProduct" && <SingleProductPage brand={brand}/>}
 
 

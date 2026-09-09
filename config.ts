@@ -1,1 +1,1 @@
-export const BACKEND_URL="http://localhost:3005/api"
+export const BACKEND_URL="https://1-fi-market-place-backend.vercel.app/api"

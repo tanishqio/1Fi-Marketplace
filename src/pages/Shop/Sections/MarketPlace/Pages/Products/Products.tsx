@@ -3,6 +3,7 @@ import ProductCard from "./productcard";
 import TransparentProductcard from "./TransparentProducts";
 function ProductsPage(props: any) {
     const brandname=props.brand;
+    const setCurrentpage=props.setCurrentpage;
     const {data,isLoading,isError,error}=useProduct(brandname);
     return <div className="w-full max-w-md mx-auto px-4 mb-6">
 
@@ -22,7 +23,8 @@ function ProductsPage(props: any) {
                         imgurl={product.ImageUrl}
                         color={product.variants[0].attributes.color}
                         storage={product.variants[0].attributes.storage}
-                        price={product.variants[0].price} />);
+                        price={product.variants[0].price}
+                        setCurrentpage={setCurrentpage} />);
                 })
 
             }
